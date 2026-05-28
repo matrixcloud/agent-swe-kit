@@ -1,0 +1,42 @@
+# 架构设计
+
+## 系统概述
+
+{{project.description}}
+
+- **类型**：{{project.type}}
+- **语言**：{{tech.language}}
+- **运行时**：{{tech.runtime}}
+{{#if (ne tech.database "none")}}
+- **数据库**：{{tech.database}}
+{{/if}}
+
+## 系统全景
+
+<!-- 在此描述系统的高层架构：核心组件、数据流、外部依赖 -->
+
+### 核心组件
+
+<!-- 列出主要模块及其职责 -->
+
+### 数据流
+
+<!-- 描述关键数据流路径 -->
+
+{{#if (eq project.type "backend")}}
+### API 设计原则
+
+- RESTful 风格（或 GraphQL，根据项目实际）
+- 统一的错误响应格式
+- 请求/响应日志
+{{/if}}
+
+{{#if (ne tech.database "none")}}
+## 数据模型
+
+<!-- 在此描述核心数据实体及其关系 -->
+{{/if}}
+
+## 关键决策
+
+重大架构决策按 ADR 格式记录在 `docs/adrs/` 目录中，索引见 `docs/adrs/README.md`。

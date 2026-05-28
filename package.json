@@ -1,0 +1,27 @@
+{
+  "name": "agent-swe-kit",
+  "version": "0.1.0",
+  "description": "Coding agent 工程实践管理工具 — 人机可读的软件工程规范",
+  "type": "module",
+  "bin": {
+    "agent-swe-kit": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "templates"
+  ],
+  "scripts": {
+    "dev": "bun run src/index.ts",
+    "build": "bun build src/index.ts --outdir dist --target node && cp -r templates dist/",
+    "prepublishOnly": "bun run build"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.9.1",
+    "commander": "^13.1.0",
+    "handlebars": "^4.7.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  }
+}

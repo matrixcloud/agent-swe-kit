@@ -1,0 +1,47 @@
+{
+  "project": {
+    "name": "agent-swe-kit",
+    "description": "Coding agent 工程实践管理工具 — 为 coding agent 和人类生成可读的软件工程规范",
+    "type": "cli"
+  },
+  "tech": {
+    "language": "typescript",
+    "runtime": "bun",
+    "pkgManager": "bun install",
+    "database": "none"
+  },
+  "commands": {
+    "install": "bun install",
+    "dev": "bun run --watch src/index.ts",
+    "test": "bun test",
+    "lint": "bunx biome check .",
+    "format": "bunx biome format . --write",
+    "build": "bun run build"
+  },
+  "vcs": {
+    "tool": "git",
+    "isolation": "smart",
+    "branchNaming": "<type>/<描述>",
+    "commitFormat": "conventional-commits",
+    "mergeStrategy": "squash"
+  },
+  "constraints": {
+    "docLanguage": "中文",
+    "forbiddenCommands": ["npm publish", "git push --force"]
+  },
+  "principles": [
+    "simplicity",
+    "explicit-over-implicit",
+    "single-responsibility",
+    "failfast",
+    "test-first"
+  ],
+  "review": {
+    "strictness": "适中",
+    "preCommitChecks": ["lint"]
+  },
+  "tasks": {
+    "style": "结构化",
+    "acFormat": "checklist"
+  }
+}

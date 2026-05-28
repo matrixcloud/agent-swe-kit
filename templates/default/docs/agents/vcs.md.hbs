@@ -1,0 +1,253 @@
+# 版本控制与协作
+
+agent 通过版本控制与人类协作的完整手册：从创建环境、编写代码、提交到合并和清理。
+
+## VCS 工具
+
+本项目使用 **{{vcs.tool}}**。
+
+---
+
+## 工作环境策略
+
+{{#if (eq vcs.isolation "strict")}}
+**严格隔离**：任何代码改动都必须创建独立工作区。
+{{#if (eq vcs.tool "git")}}
+
+### Git Worktree
+
+开始一个新任务：
+```bash
+# 1. 检查主仓库状态；如需 fetch/checkout/pull/rebase，先请求人类确认
+git status
+git branch --show-current
+
+# 2. 创建分支和 worktree
+git worktree add -b {{vcs.branchNaming}} ../{{project.name}}__<任务简述>
+
+# 3. 进入 worktree 开始工作
+cd ../{{project.name}}__<任务简述>
+```
+
+任务完成后清理：
+```bash
+# 回到主仓库
+cd ../{{project.name}}
+
+# 删除 worktree
+git worktree remove ../{{project.name}}__<任务简述>
+
+# 清理元数据
+git worktree prune
+```
+{{else if (eq vcs.tool "jj")}}
+
+### Jujutsu
+
+jj 自带多变更并发能力——一个工作目录即可承载多个在途任务，无需创建隔离工作区。
+
+开始一个新任务：
+```bash
+# 基于 main 创建新变更
+jj new main
+
+# 为变更命名
+jj describe -m "<任务简述>"
+```
+
+在新变更上工作，jj 会自动暂存修改。完成后：
+```bash
+# 提交变更
+jj commit
+```
+
+需要切换回之前的任务时：
+```bash
+# 列出所有在途变更
+jj log -r 'trunk()..'
+
+# 切换到指定变更
+jj new <变更 ID>
+```
+
+{{/if}}
+
+{{else if (eq vcs.isolation "smart")}}
+**智能判断**：根据 `docs/agents/tasks.md` 中定义的任务规模决定。
+
+| 规模 | 隔离策略 |
+| --- | --- |
+| tiny（≤ 1 文件，≤ 20 行） | 直接在当前分支/变更上工作 |
+| small（1-3 文件，≤ 100 行） | 视情况：改单文件不隔离，跨模块则隔离 |
+| medium（3-10 文件） | 建议隔离 |
+| large（10+ 文件） | **必须隔离** |
+
+不确定时，默认创建隔离区——安全比省事重要。
+{{#if (eq vcs.tool "git")}}
+
+### Git Worktree（需要时使用）
+
+创建隔离区：
+```bash
+git worktree add -b {{vcs.branchNaming}} ../{{project.name}}__<任务简述>
+cd ../{{project.name}}__<任务简述>
+```
+
+清理：
+```bash
+cd ../{{project.name}}
+git worktree remove ../{{project.name}}__<任务简述>
+git worktree prune
+```
+
+### 直接在分支工作（tiny 任务）
+
+```bash
+git checkout -b {{vcs.branchNaming}}
+# ... 改代码 ...
+```
+{{else if (eq vcs.tool "jj")}}
+
+### Jujutsu
+
+jj 默认支持多变更在同一个工作目录并存，无需隔离策略。
+
+```bash
+# 开始新任务
+jj new main
+jj describe -m "<任务简述>"
+
+# 在一个变更上工作时，jj 自动暂存。完成后：
+jj commit
+
+# 查看当前所有在途变更
+jj log -r 'trunk()..'
+```
+{{/if}}
+
+{{else}}
+**不隔离**：所有改动在分支上直接进行，不创建独立的 worktree。
+{{#if (eq vcs.tool "git")}}
+
+```bash
+# 开始新任务
+git checkout -b {{vcs.branchNaming}}
+
+# 改完提交
+git add .
+git commit
+```
+{{else if (eq vcs.tool "jj")}}
+
+```bash
+# 开始新任务
+jj new main
+jj describe -m "<任务简述>"
+
+# 完成后提交
+jj commit
+```
+{{/if}}
+{{/if}}
+
+---
+
+## 提交规范
+
+{{#if (eq vcs.commitFormat "conventional-commits")}}
+### Conventional Commits
+
+本项目使用 [Conventional Commits](https://www.conventionalcommits.org/) 格式：
+
+```
+<type>(<scope>): <简短描述>
+
+<详细说明（可选）>
+```
+
+#### Type 类型
+
+| Type | 用途 |
+| --- | --- |
+| `feat` | 新功能 |
+| `fix` | Bug 修复 |
+| `refactor` | 重构（不改变外部行为） |
+| `chore` | 构建、依赖、工具链等杂项 |
+| `docs` | 文档变更 |
+| `test` | 测试相关 |
+| `style` | 代码风格（格式化、空格等） |
+| `perf` | 性能优化 |
+
+#### 示例
+
+```
+feat(login): 增加微信扫码登录
+
+- 接入微信 OAuth 2.0
+- 新增 wechat_login 接口
+- 用户首次登录自动创建账号
+```
+
+```
+fix(api): 修复时间戳时区错误
+
+订单创建时间错误地使用了本地时区，
+改为 UTC 统一存储。
+```
+{{else}}
+### 自定义格式
+
+本项目的 commit message 格式由团队自行约定。
+
+建议：
+- 第一行：简短摘要（≤ 72 字符）
+- 空一行
+- 详细说明（可选）：为什么改、怎么改
+{{/if}}
+
+---
+
+## 分支命名
+
+分支命名规则：`{{vcs.branchNaming}}`。如果规则中包含 `<type>`，`type` 与提交类型保持一致（如 `feature` / `fix` / `refactor` / `docs`）。
+
+示例：
+- `feature/wechat-login`
+- `fix/order-timezone`
+- `refactor/user-module`
+
+{{#if (eq vcs.tool "jj")}}
+_注：Jujutsu 中分支对应"具名变更"（named change），命名规则相同。_
+{{/if}}
+
+---
+
+## 合并策略
+
+本项目使用 **{{vcs.mergeStrategy}}** 方式合并。
+
+{{#if (eq vcs.mergeStrategy "squash")}}
+- 所有 commit 压缩为一个提交到 main
+- 保持 main 分支历史简洁
+- 该变更的标题作为最终的 commit message
+{{else if (eq vcs.mergeStrategy "rebase")}}
+- 将 PR 的 commit 变基到 main 最新提交之上
+- 保持线性历史
+- 先 rebase 再合并
+{{else}}
+- 保留 PR 的完整 commit 历史
+- 通过 merge commit 合并到 main
+- 适合需要保留完整开发过程的场景
+{{/if}}
+
+---
+
+## agent 注意事项
+
+1. **提交前自查**：对照 `docs/agents/review.md` 完成自检
+2. **小而频繁的提交**：每个 commit 只做一件事
+3. **不要 force push**：除非明确约定，不要强制推送到共享分支
+4. **保持同步但不擅自改状态**：开始工作前先检查工作区和远端差异；需要 pull/rebase 时，说明影响并请求人类确认
+{{#if (eq vcs.tool "git")}}
+5. **清理工作区**：任务完成并合并后，清理 worktree
+{{/if}}
