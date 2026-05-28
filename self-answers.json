@@ -33,8 +33,7 @@
     "simplicity",
     "explicit-over-implicit",
     "single-responsibility",
-    "failfast",
-    "test-first"
+    "failfast"
   ],
   "review": {
     "strictness": "适中",

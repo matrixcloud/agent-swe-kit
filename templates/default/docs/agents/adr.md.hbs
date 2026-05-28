@@ -143,8 +143,4 @@ docs/adrs/
 
 ## ADR 索引
 
-本文件是 agent 指南，不承载具体 ADR 索引。首次创建 ADR 时，同时创建 `docs/adrs/README.md`；后续创建新 ADR 后，在 `docs/adrs/README.md` 更新索引表：
-
-| 编号 | 日期 | 标题 | 类别 | 状态 |
-| --- | --- | --- | --- | --- |
-| 001 | YYYY-MM-DD | 示例决策 | 结构 | 已采纳 |
+本文件是 agent 指南，不承载具体 ADR 索引。首次创建 ADR 时，同时创建 `docs/adrs/README.md`；后续创建新 ADR 后，在 `docs/adrs/README.md` 更新索引表。

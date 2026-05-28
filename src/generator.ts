@@ -24,6 +24,7 @@ const TEMPLATE_MAPPINGS: TemplateMapping[] = [
   { template: 'docs/agents/adr.md.hbs', output: 'docs/agents/adr.md' },
   { template: 'docs/agents/brainstorm.md.hbs', output: 'docs/agents/brainstorm.md' },
   { template: 'docs/agents/think-out-of-box.md.hbs', output: 'docs/agents/think-out-of-box.md' },
+  { template: 'docs/agents/testing.md.hbs', output: 'docs/agents/testing.md' },
   { template: 'docs/agents/tech_debt_tracker.md.hbs', output: 'docs/tech_debt_tracker.md' },
 ];
 

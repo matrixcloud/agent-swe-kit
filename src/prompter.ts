@@ -340,7 +340,6 @@ export async function prompt(): Promise<ProjectAnswers> {
       { value: 'correctness-first', label: '正确性优先', hint: '能跑对 > 跑得快 > 写得短' },
       { value: 'simplicity', label: '简单至上', hint: '最简单的能用的方案就是最好的' },
       { value: 'explicit-over-implicit', label: '显式优于隐式', hint: '代码意图一目了然' },
-      { value: 'test-first', label: '测试驱动', hint: '先写测试再写实现' },
       { value: 'safe-over-fast', label: '安全优于速度', hint: '涉及数据/资金时安全优先' },
       { value: 'single-responsibility', label: '单一职责', hint: '一个模块只做一件事' },
       { value: 'failfast', label: '快速失败', hint: '不过度设计、过度防御、过度容错' },
