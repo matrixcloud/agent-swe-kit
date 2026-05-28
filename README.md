@@ -25,6 +25,7 @@ AGENTS.md                         # agent 入口：一句话 + 命令 + 按需�
 docs/
   architecture.md                 # 系统架构全景
   agents/
+    bootstrap.md                  # Agent 初始化指南
     principles.md                 # 核心工程原则
     tasks.md                      # 任务管理协议
     testing.md                    # 测试策略
@@ -47,13 +48,13 @@ npx agent-swe-kit init
 
 ### 非交互模式（JSON 配置）
 
-适合 agent 自动调用或团队共享配置：
+适合 agent 自动调用。`answers.json` 通常只是临时配置文件，用于跳过交互式问答：
 
 ```bash
 npx agent-swe-kit init --config answers.json
 ```
 
-answers.json 示例见 [self-answers.json](./self-answers.json)。
+临时配置示例见 [self-answers.json](./self-answers.json)。
 
 ### 预览模式
 
@@ -79,10 +80,11 @@ npx agent-swe-kit init
 
 ### Agent 自动初始化
 
-agent 分析项目后生成 `answers.json`，人类确认后执行：
+agent 应先阅读 `docs/agents/bootstrap.md`，分析项目后生成临时 `answers.json`，先预览，再等待人类确认：
 
 ```bash
-# agent 说："我分析了你的项目，建议如下配置，确认吗？"
+npx agent-swe-kit init --config answers.json --dry-run
+
 # 人类确认后：
 npx agent-swe-kit init --config answers.json
 ```
