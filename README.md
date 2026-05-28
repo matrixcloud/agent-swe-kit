@@ -27,9 +27,14 @@ docs/
   agents/
     principles.md                 # 核心工程原则
     tasks.md                      # 任务管理协议
+    testing.md                    # 测试策略
     design.md                     # 设计决策指南
+    brainstorm.md                 # 方案探索与脑暴
+    think-out-of-box.md           # 跳出常规方案的反诘卡片
+    adr.md                        # ADR 写作指南
     review.md                     # 代码评审规范
     vcs.md                        # 版本控制与协作（Git / Jujutsu）
+  tech_debt_tracker.md            # 技术债务跟踪
 ```
 
 ## 用法

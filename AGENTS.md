@@ -38,5 +38,5 @@ Coding agent 工程实践管理工具 — 为 coding agent 和人类生成可读
 | 了解系统全景 | `docs/architecture.md` | 系统架构、数据模型、关键决策 |
 | 提交前自检 / 做评审 | `docs/agents/review.md` | 自查清单、评审规范、反馈格式 |
 | 操作 VCS / 提交 | `docs/agents/vcs.md` | 工作区策略、commit 规范、PR 流程 |
-| 记录关键决策 | `docs/agents/adr.md` | ADR 模板、决策分类 |
+| ADR 写作指南 | `docs/agents/adr.md` | ADR 模板、分类、记录位置 |
 | 记录技术债务 | `docs/tech_debt_tracker.md` | WAIVER 记录与追踪 |

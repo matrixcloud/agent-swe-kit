@@ -24,4 +24,4 @@ Coding agent 工程实践管理工具 — 为 coding agent 和人类生成可读
 
 ## 关键决策
 
-重大架构决策按 ADR 格式记录在 `docs/adrs/` 目录中，索引见 `docs/adrs/README.md`。
+重大架构决策按 ADR 格式记录在 `docs/adrs/` 目录中。首次创建 ADR 时，创建 `docs/adrs/README.md` 作为索引。
