@@ -23,12 +23,19 @@ agent 通过版本控制与人类协作的完整手册：从创建环境、编�
 
 创建隔离区：
 ```bash
+# 确保主工作区干净（有未提交改动先 stash）
+git status
+git stash
+
 git worktree add -b <type>/<描述> ../agent-swe-kit__<任务简述>
 cd ../agent-swe-kit__<任务简述>
 ```
 
-清理：
+推送并清理：
 ```bash
+# 先 push 再清理
+git push -u origin <type>/<描述>
+
 cd ../agent-swe-kit
 git worktree remove ../agent-swe-kit__<任务简述>
 git worktree prune
@@ -39,6 +46,9 @@ git worktree prune
 ```bash
 git checkout -b <type>/<描述>
 # ... 改代码 ...
+git add .
+git commit -m "<type>: <描述>"
+git push -u origin <type>/<描述>
 ```
 
 
@@ -48,7 +58,7 @@ git checkout -b <type>/<描述>
 
 ### Conventional Commits
 
-本项目使用 [Conventional Commits](https://www.conventionalcommits.org/) 格式：
+本项目使用 **Conventional Commits**，除专有名词外使用中文：
 
 ```
 <type>(<scope>): <简短描述>
@@ -110,10 +120,23 @@ fix(api): 修复时间戳时区错误
 
 ---
 
+## 推送与 PR
+
+提交后推送分支到远端，然后创建 PR：
+```bash
+git push -u origin <type>/<描述>
+```
+
+PR 合并后，清理本地 worktree（如有）和分支。
+
+---
+
 ## agent 注意事项
 
-1. **提交前自查**：对照 `docs/agents/review.md` 完成自检
-2. **小而频繁的提交**：每个 commit 只做一件事
-3. **不要 force push**：除非明确约定，不要强制推送到共享分支
-4. **保持同步但不擅自改状态**：开始工作前先检查工作区和远端差异；需要 pull/rebase 时，说明影响并请求人类确认
-5. **清理工作区**：任务完成并合并后，清理 worktree
+1. **工作区检查**：开始前 `git status`，有未提交改动先 `git stash`
+2. **提交前自查**：对照 `docs/agents/review.md` 完成自检
+3. **小而频繁的提交**：每个 commit 只做一件事
+4. **及时推送**：提交后立即 `git push -u origin <分支>`，方便他人看到进度
+5. **不要 force push**：除非明确约定，不要强制推送到共享分支
+6. **保持同步但不擅自改状态**：需要 pull/rebase 时，说明影响并请求人类确认
+7. **清理工作区**：任务完成并合并后，清理 worktree
