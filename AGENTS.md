@@ -8,6 +8,7 @@ Coding agent 工程实践管理工具 — 为 coding agent 和人类生成可读
 
 - 回答使用中文
 - 中英文间加空格
+- 讨论设计或问题时优先输出伪代码
 - 禁止执行 `npm publish`，必须找用户确认
 - 禁止执行 `git push --force`，必须找用户确认
 
