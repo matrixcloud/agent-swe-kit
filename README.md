@@ -11,6 +11,17 @@
 - **coding agent 能读懂**，知道怎么在你的项目中正确地工作
 - **人也能读懂**，用来对齐团队规范、评审代码、管理任务
 
+## Agent 使用指南
+
+Agent 应先阅读 `docs/usage_for_agents.md`，分析项目后生成临时 `answers.json`，先预览，再等待人类确认：
+
+```bash
+npx agent-swe-kit init --config answers.json --dry-run
+
+# 人类确认后：
+npx agent-swe-kit init --config answers.json
+```
+
 ## 快速开始
 
 ```bash
@@ -24,8 +35,8 @@ npx agent-swe-kit init
 AGENTS.md                         # agent 入口：一句话 + 命令 + 按需索引
 docs/
   architecture.md                 # 系统架构全景
+  usage_for_agents.md             # Agent 使用指南
   agents/
-    bootstrap.md                  # Agent 初始化指南
     principles.md                 # 核心工程原则
     tasks.md                      # 任务管理协议
     testing.md                    # 测试策略
@@ -76,17 +87,6 @@ npx agent-swe-kit init --force
 cd my-new-project
 npx agent-swe-kit init
 # 回答问题 → 生成规范文件 → 提交到 git
-```
-
-### Agent 自动初始化
-
-agent 应先阅读 `docs/agents/bootstrap.md`，分析项目后生成临时 `answers.json`，先预览，再等待人类确认：
-
-```bash
-npx agent-swe-kit init --config answers.json --dry-run
-
-# 人类确认后：
-npx agent-swe-kit init --config answers.json
 ```
 
 ### 已有项目接入

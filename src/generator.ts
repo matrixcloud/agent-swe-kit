@@ -16,7 +16,6 @@ interface TemplateMapping {
 const TEMPLATE_MAPPINGS: TemplateMapping[] = [
   { template: 'AGENTS.md.hbs', output: 'AGENTS.md' },
   { template: 'docs/architecture.md.hbs', output: 'docs/architecture.md' },
-  { template: 'docs/agents/bootstrap.md.hbs', output: 'docs/agents/bootstrap.md' },
   { template: 'docs/agents/principles.md.hbs', output: 'docs/agents/principles.md' },
   { template: 'docs/agents/tasks.md.hbs', output: 'docs/agents/tasks.md' },
   { template: 'docs/agents/design.md.hbs', output: 'docs/agents/design.md' },
