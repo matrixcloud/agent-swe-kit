@@ -78,4 +78,4 @@ agent 根据任务规模自动判断是否需要创建隔离工作区。具体�
 7. **方案设计**：必要时先出方案（参考 `docs/agents/design.md`）
 8. **编码实现**：对照原则（`docs/agents/principles.md`）。有行为变化的改动遵循 Red / Green / Refactor（详见 `docs/agents/testing.md`）
 9. **自检**：对照评审清单自查（`docs/agents/review.md`）
-10. **交付**：提交代码，说明改动内容和验证方式
+10. **交付**：按 `docs/agents/vcs.md` 的规范（分支命名、commit 格式、合并策略）提交代码，说明改动内容和验证方式

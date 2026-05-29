@@ -25,12 +25,17 @@ Coding agent 工程实践管理工具 — 为 coding agent 和人类生成可读
 - 代码改动在交付前默认执行：`bunx biome check . && bunx biome format . --write && bun test`
 - 纯文档或纯规划任务可不执行全量测试
 
+## 执行门禁
+
+以下规则，请严格遵守：
+
+1. 接到新任务时（MUST）：先读取 `docs/agents/tasks.md`，理解完整工作流。
+2. 操作版本控制前（MUST）：先读取 `docs/agents/vcs.md`，遵循项目的版本控制规范。
+
 ## 按需阅读
 
 | 场景 | 文档 | 内容 |
 | --- | --- | --- |
-| 接到新任务 | `docs/agents/tasks.md` | 任务描述格式、规模定义、agent 工作流 |
-| 接入 agent-swe-kit | `docs/agents/bootstrap.md` | 非交互初始化、dry-run、确认流程 |
 | 探索方案 / 脑暴 | `docs/agents/brainstorm.md` | 方案生成、对比、反馈模板 |
 | 方案太保守 / 卡住了 | `docs/agents/think-out-of-box.md` | 质疑前提、挑战方案 |
 | 深入设计 | `docs/agents/design.md` | 决策流程、方案文档模板 |
@@ -38,6 +43,6 @@ Coding agent 工程实践管理工具 — 为 coding agent 和人类生成可读
 | 编写测试 | `docs/agents/testing.md` | 测试策略、Red/Green/Refactor |
 | 了解系统全景 | `docs/architecture.md` | 系统架构、数据模型、关键决策 |
 | 提交前自检 / 做评审 | `docs/agents/review.md` | 自查清单、评审规范、反馈格式 |
-| 操作 VCS / 提交 | `docs/agents/vcs.md` | 工作区策略、commit 规范、PR 流程 |
 | ADR 写作指南 | `docs/agents/adr.md` | ADR 模板、分类、记录位置 |
 | 记录技术债务 | `docs/tech_debt_tracker.md` | WAIVER 记录与追踪 |
+

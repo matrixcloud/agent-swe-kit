@@ -1,4 +1,4 @@
-#!/usr/bin/env bun
+#!/usr/bin/env node
 import { Command } from 'commander';
 import { readFileSync, existsSync } from 'fs';
 import { resolve } from 'path';
