@@ -1,6 +1,6 @@
 {
   "name": "agent-swe-kit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Coding agent 工程实践管理工具 — 人机可读的软件工程规范",
   "type": "module",
   "bin": {
