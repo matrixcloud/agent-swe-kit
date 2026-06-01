@@ -74,14 +74,14 @@ jj new <变更 ID>
 {{/if}}
 
 {{else if (eq vcs.isolation "smart")}}
-**智能判断**：使用 `docs/agents/tasks.md` 中的任务规模定义决定是否隔离。
+**智能判断**：使用 `docs/agents/tasks.md` 中的任务规模定义决定是否需要创建 Git Worktree。
 
 - tiny：直接在当前分支/变更上工作
-- small：单文件可直接修改，跨模块则隔离
-- medium：建议隔离
-- large：必须隔离
+- small：单文件可直接修改，跨模块建议创建
+- medium：建议创建
+- large：必须创建
 
-不确定时，默认创建隔离区——安全比省事重要。
+不确定时，默认创建——安全比省事重要。
 {{#if (eq vcs.tool "git")}}
 
 ### Git Worktree（需要时使用）

@@ -11,6 +11,7 @@ Coding agent 工程实践管理工具 — 为 coding agent 和人类生成可读
 - 讨论设计或问题时优先输出伪代码
 - 禁止执行 `npm publish`，必须找用户确认
 - 禁止执行 `git push --force`，必须找用户确认
+- 禁止修改 `README.md` 和 `docs/architecture.md`，除非任务明确要求
 
 ## 命令
 

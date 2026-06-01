@@ -252,10 +252,10 @@ export async function prompt(): Promise<ProjectAnswers> {
         ],
       }),
       isolation: () => p.select({
-        message: '任务隔离策略？',
+        message: 'Git Worktree 隔离策略？（Git 下创建独立物理工作区）',
         options: [
-          { value: 'strict', label: '严格隔离', hint: '任何改动都建 worktree/workspace' },
-          { value: 'smart', label: '智能判断', hint: '大改动隔离，小改动直接改（推荐）' },
+          { value: 'strict', label: '严格隔离', hint: '任何改动都建 worktree' },
+          { value: 'smart', label: '智能判断', hint: '大改动建 worktree，小改动直接改（推荐）' },
           { value: 'none', label: '不隔离', hint: '直接在分支上工作' },
         ],
       }),
